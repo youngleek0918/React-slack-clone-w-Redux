@@ -1,7 +1,10 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./Header";
+import Header from "./components/Header";
+import Sidebar from './components/Sidebar'
+import styled from "styled-components";
+
 
 function App() {
   return (
@@ -11,11 +14,15 @@ function App() {
         <>
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/" exact>
-              <Header />
-            </Route>
-          </Switch>
+          <Header />
+          <AppBody>
+            <Sidebar />
+            <Switch>
+              <Route path="/" exact>
+                {/* Chat */}
+              </Route>
+            </Switch>
+          </AppBody>
         </>
       </Router>
     </div>
@@ -23,3 +30,8 @@ function App() {
 }
 
 export default App;
+
+const AppBody = styled.div`
+  display: flex;
+  height: 100vh;
+`;
