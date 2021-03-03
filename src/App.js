@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from './components/Sidebar'
 import styled from "styled-components";
+import Chat from "./components/Chat";
 
 
 function App() {
   return (
     <div className="app">
-      <h1>Slack clone w/ redux</h1>
       <Router>
         <>
           {/* A <Switch> looks through its children <Route>s and
@@ -19,7 +19,7 @@ function App() {
             <Sidebar />
             <Switch>
               <Route path="/" exact>
-                {/* Chat */}
+                <Chat />
               </Route>
             </Switch>
           </AppBody>
