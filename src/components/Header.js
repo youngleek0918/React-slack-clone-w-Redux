@@ -4,27 +4,30 @@ import { Avatar } from "@material-ui/core";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import SearchIcon from "@material-ui/icons/Search";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 
 function Header() {
+  const [user] = useAuthState(auth);
+
   return (
     <HeaderContainer>
-      {/* Header Left */}
       <HeaderLeft>
         <HeaderAvatar
-        // Add onclick
+          onClick={() => auth.signOut()}
+          alt={user?.displayName}
+          src={user?.photoUrl}
         />
         <AccessTimeIcon />
       </HeaderLeft>
 
-      {/* Header Search */}
       <HeaderSearch>
         <SearchIcon />
         <input placeholder="Search" />
       </HeaderSearch>
 
-      {/* Header Right */}
       <HeaderRight>
-          <HelpOutlineIcon/>
+        <HelpOutlineIcon />
       </HeaderRight>
     </HeaderContainer>
   );
@@ -76,14 +79,14 @@ const HeaderLeft = styled.div`
 `;
 
 const HeaderRight = styled.div`
-    flex: 0.3;
-    display: flex;
-    align-items: flex-end;
+  flex: 0.3;
+  display: flex;
+  align-items: flex-end;
 
-    > .MuiSvgIcon-root{
-        margin-left: auto;
-        margin-right: 20px;
-    }
+  > .MuiSvgIcon-root {
+    margin-left: auto;
+    margin-right: 20px;
+  }
 `;
 
 const HeaderAvatar = styled(Avatar)`
